@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700;900&family=Orbitron:wght@400;700;900&display=swap');
 
 @import "tailwindcss";
@@ -9,14 +10,8 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden;
-  /* CRITICAL: Prevents scrollbars */
-  position: fixed;
-  /* CRITICAL: Prevents screen jump on mobile/resize */
   background-color: #050510;
   color: white;
-  /* Default text color */
-  /* Deep dark PCB background */
   font-family: 'Inter', sans-serif;
 }
 

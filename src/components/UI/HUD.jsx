@@ -2,13 +2,14 @@ import { useStore } from '../../store'
 
 export default function HUD() {
     const selectedItem = useStore((state) => state.selectedItem)
+    const godMode = useStore((state) => state.godMode)
 
     if (selectedItem) return null // Hide HUD when modal is open
 
     return (
         <div className="absolute inset-0 pointer-events-none z-10 select-none overflow-hidden">
             {/* Top Left - System Status */}
-            <div className="absolute top-8 left-8 text-cyan-400 font-mono text-sm tracking-widest">
+            <div className="absolute top-8 left-8 text-cyan-400 font-mono text-sm tracking-widest hidden md:block">
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,20,30,0.95) 100%)',
                     border: '1px solid rgba(6, 182, 212, 0.4)',
@@ -41,7 +42,7 @@ export default function HUD() {
             </div>
 
             {/* Top Right - Compass / Coordinates Mockup */}
-            <div className="absolute top-8 right-8 text-cyan-400 font-mono text-xs text-right">
+            <div className="absolute top-8 right-8 text-cyan-400 font-mono text-xs text-right hidden md:block">
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.85) 0%, rgba(10,20,30,0.9) 100%)',
                     border: '2px solid rgba(6, 182, 212, 0.4)',
@@ -57,7 +58,7 @@ export default function HUD() {
             </div>
 
             {/* Bottom Left - Keys */}
-            <div className="absolute bottom-8 left-8 text-cyan-300 font-mono text-xs">
+            <div className="absolute bottom-8 left-8 text-cyan-300 font-mono text-xs hidden md:block">
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,20,30,0.95) 100%)',
                     border: '1px solid rgba(6, 182, 212, 0.4)',
@@ -110,7 +111,7 @@ export default function HUD() {
             </div>
 
             {/* Bottom Right - User Info */}
-            <div className="absolute bottom-8 right-8 text-right">
+            <div className="absolute bottom-24 right-4 scale-75 origin-bottom-right md:scale-100 md:bottom-8 md:right-8 text-right pointer-events-none">
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,20,30,0.95) 100%)',
                     border: '1px solid rgba(6, 182, 212, 0.4)',
@@ -145,6 +146,18 @@ export default function HUD() {
 
             {/* Center Reticle Decor */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-cyan-500/5 rounded-full" />
+
+            {/* GOD MODE ALERT */}
+            {godMode && (
+                <div className="absolute top-24 left-1/2 -translate-x-1/2 text-center pointer-events-none">
+                    <h1 className="text-4xl font-bold font-mono text-yellow-400 animate-pulse tracking-[0.5em] drop-shadow-[0_0_15px_rgba(250,204,21,0.8)]">
+                        GOD MODE ACTIVE
+                    </h1>
+                    <p className="text-yellow-200/80 font-mono text-sm tracking-widest mt-2 bg-black/50 px-4 py-1 rounded inline-block border border-yellow-400/30">
+                        SPEED MULTIPLIER: 2000%
+                    </p>
+                </div>
+            )}
         </div>
     )
 }

@@ -5,6 +5,7 @@ import Modal from './components/UI/Modal'
 import Crosshair from './components/UI/Crosshair'
 import Loader from './components/UI/Loader'
 import HUD from './components/UI/HUD'
+import MobileControls from './components/UI/MobileControls'
 
 function App() {
   const [view, setView] = useState('landing') // 'landing' or '3d'
@@ -26,6 +27,7 @@ function App() {
       <HUD />
       <Crosshair />
       <Scene onExit3D={() => setView('landing')} />
+      <MobileControls />
       <Modal />
     </div>
   )

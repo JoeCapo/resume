@@ -8,6 +8,7 @@ import { useStore } from '../../store'
 const SPEED = 5
 const RUN_SPEED = 10
 const FLY_SPEED = 15
+const GOD_SPEED = 100
 
 export default function FirstPersonController() {
     const { camera } = useThree()
@@ -26,9 +27,24 @@ export default function FirstPersonController() {
 
     const selectedItem = useStore((state) => state.selectedItem)
 
+    // KONAMI CODE EASTER EGG
     useEffect(() => {
-        const onKeyDown = (e) => {
+        const secretCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyB', 'KeyA']
+        let currentSequence = []
 
+        const onKeyDown = (e) => {
+            // Check for Konami Code
+            currentSequence.push(e.code)
+            if (currentSequence.length > secretCode.length) {
+                currentSequence.shift()
+            }
+            if (JSON.stringify(currentSequence) === JSON.stringify(secretCode)) {
+                // GOD MODE ACTIVATED
+                useStore.setState({ godMode: true })
+                console.log("GOD MODE ACTIVATED")
+            }
+
+            // Standard movement controls
             switch (e.code) {
                 case 'KeyW': moveState.current.forward = true; break
                 case 'KeyS': moveState.current.backward = true; break
@@ -67,21 +83,30 @@ export default function FirstPersonController() {
         if (!rigidBodyRef.current || selectedItem) return
 
         const velocity = rigidBodyRef.current.linvel()
-        const currentSpeed = isFlying ? FLY_SPEED : (moveState.current.run ? RUN_SPEED : SPEED)
+        const { godMode, mobileInput } = useStore.getState()
+        const currentSpeed = godMode ? GOD_SPEED : (isFlying ? FLY_SPEED : (moveState.current.run ? RUN_SPEED : SPEED))
 
-
+        // Camera Rotation (Mobile Look)
+        if (mobileInput.lookX || mobileInput.lookY) {
+            const rotSpeed = 0.05
+            camera.rotation.y -= mobileInput.lookX * rotSpeed
+            // Optional: Pitch control (look up/down)
+            // camera.rotation.x -= mobileInput.lookY * rotSpeed
+            // Clamp pitch to avoid flipping? 
+            // For now just Y rotation (Yaw) is most critical for navigation
+        }
 
         const direction = new Vector3()
-        const frontVector = new Vector3(
-            0,
-            0,
-            Number(moveState.current.backward) - Number(moveState.current.forward)
-        )
-        const sideVector = new Vector3(
-            Number(moveState.current.left) - Number(moveState.current.right),
-            0,
-            0
-        )
+        // Combine keyboard and mobile input
+        // joystick returns x/y from -1 to 1. 
+        // y is forward/back (-1 is up/forward usually in screen space, check component)
+        // In Joystick component: dy > 0 is down/back. dy < 0 is up/forward.
+
+        const forwardInput = Number(moveState.current.backward) - Number(moveState.current.forward) + mobileInput.y
+        const sideInput = Number(moveState.current.left) - Number(moveState.current.right) + mobileInput.x
+
+        const frontVector = new Vector3(0, 0, forwardInput)
+        const sideVector = new Vector3(sideInput, 0, 0)
 
         direction.subVectors(frontVector, sideVector).normalize().multiplyScalar(currentSpeed)
 
@@ -127,7 +152,7 @@ export default function FirstPersonController() {
             >
                 <CapsuleCollider args={[0.75, 0.3]} />
             </RigidBody>
-            <PointerLockControls />
+            {!selectedItem && <PointerLockControls />}
         </group>
     )
 }

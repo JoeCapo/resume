@@ -72,17 +72,12 @@ export default function Scene({ onExit3D }) {
                 </Suspense>
             </Canvas>
 
-            {/* Exit 3D Button - Top Center */}
+            {/* Exit 3D Button - Top Center (Desktop) / Full Width Top (Mobile) */}
             {onExit3D && (
-                <div style={{
-                    position: 'absolute',
-                    top: '20px',
-                    left: '50%',
-                    transform: 'translateX(-50%)',
-                    zIndex: 100
-                }}>
+                <div className="absolute z-[100] top-0 w-full p-4 md:top-5 md:w-auto md:left-1/2 md:-translate-x-1/2 md:p-0">
                     <button
                         onClick={onExit3D}
+                        className="w-full md:w-auto"
                         style={{
                             background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,20,30,0.95) 100%)',
                             border: '2px solid rgba(6, 182, 212, 0.6)',

@@ -1,8 +1,17 @@
 import { useStore } from '../../store'
+import { useState, useEffect } from 'react'
 
 export default function HUD() {
     const selectedItem = useStore((state) => state.selectedItem)
     const godMode = useStore((state) => state.godMode)
+    const [profileExpanded, setProfileExpanded] = useState(false)
+
+    useEffect(() => {
+        // Expand by default on desktop
+        if (window.innerWidth >= 768) {
+            setProfileExpanded(true)
+        }
+    }, [])
 
     if (selectedItem) return null // Hide HUD when modal is open
 
@@ -110,30 +119,53 @@ export default function HUD() {
                 </div>
             </div>
 
-            {/* Bottom Right - User Info */}
-            <div className="absolute bottom-24 right-4 scale-75 origin-bottom-right md:scale-100 md:bottom-8 md:right-8 text-right pointer-events-none">
+
+
+            {/* User Info - Collapsible on Mobile */}
+            <div
+                className={`absolute pointer-events-auto transition-all duration-300
+                    ${profileExpanded
+                        ? 'top-20 left-4 md:bottom-8 md:right-8 md:top-auto md:left-auto scale-90 md:scale-100 origin-top-left md:origin-bottom-right'
+                        : 'top-20 left-4 scale-100 origin-top-left'
+                    }`}
+                onClick={() => setProfileExpanded(!profileExpanded)}
+            >
                 <div style={{
                     background: 'linear-gradient(135deg, rgba(0,0,0,0.9) 0%, rgba(10,20,30,0.95) 100%)',
                     border: '1px solid rgba(6, 182, 212, 0.4)',
-                    borderRight: '4px solid rgba(6, 182, 212, 0.8)',
+                    borderLeft: (!profileExpanded || window.innerWidth < 768) ? '4px solid rgba(6, 182, 212, 0.8)' : '1px solid rgba(6, 182, 212, 0.4)',
+                    borderRight: (profileExpanded && window.innerWidth >= 768) ? '4px solid rgba(6, 182, 212, 0.8)' : '1px solid rgba(6, 182, 212, 0.4)',
                     borderRadius: '2px',
-                    padding: '16px 24px',
+                    padding: profileExpanded ? '16px 24px' : '12px',
                     boxShadow: '0 0 30px rgba(6, 182, 212, 0.2), inset 0 0 30px rgba(6, 182, 212, 0.08)',
                     backdropFilter: 'blur(10px)',
-                    position: 'relative'
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '10px'
                 }}>
-                    {/* Tech Corner Decoration */}
-                    <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400" />
-                    <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-400" />
+                    {/* Collapsed Icon */}
+                    <div className={`w-10 h-10 rounded bg-cyan-900/50 border border-cyan-500/50 flex items-center justify-center font-bold text-cyan-400 font-mono ${profileExpanded ? 'hidden' : 'block'}`}>
+                        JC
+                    </div>
 
-                    <h1 className="text-3xl font-bold text-white tracking-tight mb-1 font-mono" style={{
-                        textShadow: '0 0 20px rgba(6, 182, 212, 0.8)'
-                    }}>JOE CAPORICCIO</h1>
-                    <div className="flex justify-end gap-2 items-center">
-                        <div className="h-[1px] w-8 bg-cyan-500/50"></div>
-                        <h2 className="text-base text-cyan-400 tracking-widest uppercase font-bold font-mono" style={{
-                            textShadow: '0 0 10px rgba(6, 182, 212, 0.6)'
-                        }}>Solutions Engineer</h2>
+                    {/* Expanded Content */}
+                    <div className={profileExpanded ? 'block' : 'hidden'}>
+                        {/* Tech Corner Decoration */}
+                        <div className="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-cyan-400" />
+                        <div className="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-cyan-400" />
+
+                        <div className={`text-left ${profileExpanded && window.innerWidth >= 768 ? 'md:text-right' : ''}`}>
+                            <h1 className="text-3xl font-bold text-white tracking-tight mb-1 font-mono" style={{
+                                textShadow: '0 0 20px rgba(6, 182, 212, 0.8)'
+                            }}>JOE CAPORICCIO</h1>
+                            <div className={`flex gap-2 items-center ${profileExpanded && window.innerWidth >= 768 ? 'md:justify-end' : ''}`}>
+                                <div className="h-[1px] w-8 bg-cyan-500/50"></div>
+                                <h2 className="text-base text-cyan-400 tracking-widest uppercase font-bold font-mono" style={{
+                                    textShadow: '0 0 10px rgba(6, 182, 212, 0.6)'
+                                }}>Solutions Engineer</h2>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

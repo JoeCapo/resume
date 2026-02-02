@@ -12,9 +12,11 @@ export default function MonumentInteraction({ title, data, children }) {
             onPointerOut={(e) => { e.stopPropagation(); setHovered(false) }}
             onClick={(e) => {
                 e.stopPropagation()
-                // Only trigger if we are already locked (looking around)
-                // If not locked, this click is just capturing the pointer.
-                if (!document.pointerLockElement) return
+                // Prevent click if we dragged (camera rotation)
+                // R3F event.delta gives distance between pointer down and up
+                if (e.delta > 10) return
+
+                // Allow interaction always (Desktop Drag-to-Look or Mobile Tap)
 
                 selectItem({
                     type: 'profile',

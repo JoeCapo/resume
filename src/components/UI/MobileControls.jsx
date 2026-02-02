@@ -32,16 +32,7 @@ export default function MobileControls() {
                 onMove={(x, y) => setMobileInput({ lookX: x, lookY: y })}
             />
 
-            {/* Action Buttons */}
-            <div className="absolute bottom-24 right-8 pointer-events-auto flex flex-col gap-4">
-                <button
-                    className="w-16 h-16 rounded-full bg-cyan-500/30 border-2 border-cyan-400 backdrop-blur text-white font-bold active:bg-cyan-500/60"
-                    onTouchStart={() => setMobileInput({ jump: true })}
-                    onTouchEnd={() => setMobileInput({ jump: false })}
-                >
-                    JUMP
-                </button>
-            </div>
+
         </div>
     )
 }

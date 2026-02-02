@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
 import { RigidBody, CapsuleCollider } from '@react-three/rapier'
 import { Vector3 } from 'three'
-import { PointerLockControls } from '@react-three/drei'
 import { useStore } from '../../store'
 
 const SPEED = 5
@@ -138,6 +137,39 @@ export default function FirstPersonController() {
         }
     }, [isFlying])
 
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        const checkMobile = () => {
+            // Match logic in MobileControls: Touch or Small Screen
+            const mobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0 || window.innerWidth < 1024
+            setIsMobile(mobile)
+        }
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
+
+    // Mouse Look Logic (Desktop - Drag to Rotate)
+    // This replaces PointerLockControls to avoid the "Press ESC" message
+    useEffect(() => {
+        if (isMobile) return
+
+        const onMouseMove = (e) => {
+            if (e.buttons === 1) { // Left click drag
+                const sensitivity = 0.002
+                camera.rotation.y -= e.movementX * sensitivity
+                camera.rotation.x -= e.movementY * sensitivity
+
+                // Clamp pitch
+                camera.rotation.x = Math.max(-Math.PI / 2, Math.min(Math.PI / 2, camera.rotation.x))
+            }
+        }
+
+        document.addEventListener('mousemove', onMouseMove)
+        return () => document.removeEventListener('mousemove', onMouseMove)
+    }, [isMobile, camera])
+
     return (
         <group>
             <RigidBody
@@ -152,7 +184,8 @@ export default function FirstPersonController() {
             >
                 <CapsuleCollider args={[0.75, 0.3]} />
             </RigidBody>
-            {!selectedItem && <PointerLockControls />}
+
+
         </group>
     )
 }

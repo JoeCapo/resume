@@ -1,21 +1,9 @@
 import SkillZone from './SkillZone'
 import { Text } from '@react-three/drei'
+import { resumeData } from '../../data/resumeContent'
 
 export default function CustomerPlaza({ position }) {
-    const data = {
-        title: "Solutions Engineering",
-        subtitle: "Customer Success & Strategy",
-        data: {
-            "Core Competencies": [
-                "Customer Communication",
-                "Requirements Gathering",
-                "Technical Troubleshooting",
-                "Stakeholder Management",
-                "Product Demonstrations"
-            ],
-            "Experience": "Proven ability to translate complex technical concepts for non-technical audiences and deliver solutions that meet business requirements."
-        }
-    }
+    const data = resumeData.skills.solutions
 
     // Style: Corporate Atrium / Lobby (Wood & Glass)
     return (

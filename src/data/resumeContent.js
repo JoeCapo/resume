@@ -1,12 +1,12 @@
 export const resumeData = {
     profile: {
         name: "JOE CAPORICCIO",
-        title: "SOLUTIONS ENGINEER | DEVELOPER TRANSITIONING TO CUSTOMER-FACING TECHNICAL ROLE",
+        title: "SOLUTIONS ENGINEER | DEVELOPER",
         contact: "South Windsor, CT | 860-268-6035 | jrcaporiccio@gmail.com",
-        summary: `Technical professional with 7+ years experience in software development, customer collaboration, and technical problem-solving. Proven ability to translate complex technical concepts for non-technical audiences, troubleshoot customer issues, and deliver solutions that meet business requirements. Seeking to leverage development background in a customer-facing Solutions Engineering role.`,
+        summary: `Developer with 7+ years of experience bridging the gap between code and customers. I love simplifying complex tech for non-technical folks and building tools that actually solve problems.`,
         competencies: [
             "Customer Communication & Requirements Gathering",
-            "Technical Troubleshooting & Problem-Solving",
+            "Technical Troubleshooting & Root Cause Analysis",
             "Solution Design & Implementation",
             "Stakeholder Management",
             "Technical Documentation",
@@ -23,17 +23,17 @@ export const resumeData = {
             type: "career_tower",
             level: 3,
             details: `Customer-Facing Technical Work:
-• Collaborate directly with pharmaceutical industry clients and internal stakeholders to gather requirements, scope solutions, and ensure deliverables meet business objectives
-• Translate technical constraints and implementation details into clear, non-technical language for Project Managers and business stakeholders
-• Troubleshoot production issues and customer-reported bugs, providing timely resolution and clear communication throughout the process
-• Document technical solutions and create user-facing documentation for platform features
-• Work cross-functionally with UX/UI designers, PMs, and engineers to deliver integrated solutions that solve customer problems
+• Partnered directly with pharma clients to scope and build solutions that work.
+• Translated 'dev speak' into plain English for PMs and stakeholders.
+• Squashed production bugs while keeping everyone in the loop.
+• Wrote user-facing docs so people could actually understand how to use the platform.
+• Worked with design and product teams to ship features that solve real problems.
 
 Technical Implementation:
-• Develop web applications using Laravel, React, PHP, JavaScript
-• Deploy solutions through Azure DevOps CI/CD pipelines across multiple environments
-• Build database-driven features and API integrations using PostgreSQL and MySQL
-• Ensure solutions meet accessibility standards and industry compliance requirements`
+• Built web apps using Laravel, React, PHP, and JavaScript.
+• Automated deployments via Azure DevOps CI/CD.
+• Built robust database features and API integrations using PostgreSQL and MySQL.
+• Ensured everything I built was accessible and compliant.`
         },
         {
             company: "Envision Pharma Group",
@@ -42,16 +42,16 @@ Technical Implementation:
             type: "career_tower",
             level: 2,
             details: `Customer Solutions & Technical Support:
-• Served as technical point of contact for internal customers, gathering requirements and configuring portal solutions to meet specific business needs
-• Translated customer requirements into technical specifications, coordinating with engineering teams to implement custom solutions
-• Troubleshot complex portal issues, investigating root causes and communicating findings to both technical and non-technical audiences
-• Created comprehensive technical documentation and training materials for end users
-• Managed environment migrations ensuring minimal disruption to customer operations
+• Technical lead for internal teams—gathered requirements and built custom portal solutions.
+• Turned broad business needs into precise technical specs.
+• Root-cause analysis for complex portal issues (I find out *why* it broke).
+• Created comprehensive technical docs and training materials.
+• Handled environment migrations without breaking things.
 
 Technical Work:
-• Modified Java codebase and wrote validation scripts in Groovy
-• Configured systems using SQL queries and XML
-• Enhanced portal functionality using HTML, XML, and Java`
+• Modified Java codebase and wrote validation scripts in Groovy.
+• Configured systems using SQL queries and XML.
+• Tweaked portal functionality using HTML, XML, and Java.`
         },
         {
             company: "PA Industries",
@@ -60,55 +60,77 @@ Technical Work:
             type: "career_tower",
             level: 1,
             details: `Customer-Facing Technical Support:
-• Provided frontline technical support to manufacturing clients, diagnosing complex equipment issues and coordinating resolution with engineering teams
-• Managed customer expectations and timelines through clear, proactive communication
-• Served as technical liaison between customers and internal engineering, translating customer needs into actionable technical requirements
-• Documented technical solutions and created customer-facing troubleshooting guides
-• Analyzed PLC programming issues using AB RSLogix5000, explaining technical findings to non-technical customer contacts`
+• Frontline support for manufacturing clients—diagnosed complex equipment issues.
+• Acted as the link between customers and engineering to get problems solved fast.
+• Managed customer expectations (kept them happy while we fixed stuff).
+• Wrote troubleshooting guides that actually made sense.
+• Debugged PLC programming issues using AB RSLogix5000.`
         }
     ],
     skills: {
         frontend: {
-            category: "FRONTEND",
-            items: ["React", "JavaScript", "HTML/CSS", "UX Design"],
-            description: "Building responsive, user-friendly interfaces with modern frameworks."
+            title: "Frontend Development",
+            subtitle: "UI/UX & Interactive Experiences",
+            data: {
+                "Stack": ["React", "JavaScript", "HTML/CSS", "Three.js"],
+                "Certifications": "Google UX Design Certificate (2021)",
+                "Experience": "Built integrated UI solutions alongside designers, focused on accessibility, performance, and looking good."
+            }
         },
         backend: {
-            category: "BACKEND",
-            items: ["Laravel", "PHP", "Node.js", "Java", "Groovy"],
-            description: "Robust server-side logic and API integrations."
-        },
-        database: {
-            category: "DATABASE",
-            items: ["PostgreSQL", "MySQL", "SQL", "XML"],
-            description: "Data modeling, querying, and optimization."
+            title: "Backend Engineering",
+            subtitle: "Server Logic & Data",
+            data: {
+                "Languages": ["PHP", "Laravel", "SQL", "Java", "Groovy"],
+                "Responsibilities": [
+                    "Built robust database features and API integrations.",
+                    "Root-cause analysis for complex issues.",
+                    "Modernized legacy code and wrote solid validation logic."
+                ]
+            }
         },
         devops: {
-            category: "DEVOPS",
-            items: ["Azure DevOps", "CI/CD", "Git", "Environment Mgmt"],
-            description: "Streamlining deployment and maintaining stability."
+            title: "DevOps & Infrastructure",
+            subtitle: "CI/CD & Cloud",
+            data: {
+                "Tools": ["Azure DevOps", "CI/CD Pipelines", "Git"],
+                "Experience": [
+                    "Automated deployments via Azure DevOps CI/CD.",
+                    "Handled smooth environment migrations with zero drama."
+                ]
+            }
         },
-        soft: {
-            category: "SOFT SKILLS",
-            items: ["Communication", "Problem Solving", "Documentation", "Stakeholder Mgmt"],
-            description: "Bridging the gap between technical and business requirements."
+        solutions: {
+            title: "Solutions Engineering",
+            subtitle: "Customer Success & Strategy",
+            data: {
+                "Core Competencies": [
+                    "Customer Communication",
+                    "Requirements Gathering",
+                    "Technical Troubleshooting",
+                    "Stakeholder Management",
+                    "Product Demonstrations"
+                ],
+                "Experience": "I speak both 'Tech' and 'Business' fluently. I make sure stakeholders get what they need and engineers know what to build."
+            }
         }
     },
-    education: [
-        {
-            degree: "Google UX Design Certificate",
-            year: "2021"
-        },
-        {
-            degree: "Bachelor of Arts, Business Information Systems",
-            school: "Southern New Hampshire University",
-            year: "2018"
+    education: {
+        title: "Education & Certifications",
+        subtitle: "Lifetime Learning",
+        data: {
+            "Degrees": [
+                "Bachelor of Arts, Business Information Systems - SNHU (2018)"
+            ],
+            "Certifications": [
+                "Google UX Design Certificate (2021)"
+            ]
         }
-    ],
+    },
     achievements: [
-        "Successfully collaborated with 20+ pharmaceutical clients on technical implementations",
-        "Resolved complex customer issues requiring coordination across multiple technical teams",
-        "Created technical documentation reducing customer support tickets by improving self-service",
-        "Maintained strong customer relationships while navigating technical constraints and tradeoffs"
+        "Collaborated with 20+ clients on technical implementations.",
+        "Resolved complex multi-team technical issues.",
+        "Reduced support tickets by improving self-service docs.",
+        "Maintained happy customers while navigating technical trade-offs."
     ]
 }

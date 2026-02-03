@@ -1,20 +1,10 @@
 import { RigidBody } from '@react-three/rapier'
 import MonumentInteraction from '../Monument/MonumentInteraction'
 import { Text } from '@react-three/drei'
+import { resumeData } from '../../data/resumeContent'
 
 export default function EducationBuilding({ position }) {
-    const data = {
-        title: "Education & Certifications",
-        subtitle: "Lifetime Learning",
-        data: {
-            "Degrees": [
-                "Bachelor of Arts, Business Information Systems - SNHU (2018)"
-            ],
-            "Certifications": [
-                "Google UX Design Certificate (2021)"
-            ]
-        }
-    }
+    const data = resumeData.education
 
     // Style: Classical University Library (Limestone & Brick)
     return (

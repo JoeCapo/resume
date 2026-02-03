@@ -1,19 +1,9 @@
 import SkillZone from './SkillZone'
 import { Text } from '@react-three/drei'
+import { resumeData } from '../../data/resumeContent'
 
 export default function BackendFortress({ position }) {
-    const data = {
-        title: "Backend Engineering",
-        subtitle: "Server Logic & Data",
-        data: {
-            "Languages": ["PHP", "Laravel", "SQL (PostgreSQL, MySQL)", "Java", "Groovy"],
-            "Responsibilities": [
-                "Build database-driven features and API integrations.",
-                "Troubleshoot complex portal issues and root cause analysis.",
-                "Write validation scripts and modify legacy codebases."
-            ]
-        }
-    }
+    const data = resumeData.skills.backend
 
     // Style: Brutalist Concrete Data Center
     return (

@@ -1,6 +1,7 @@
 import { RigidBody } from '@react-three/rapier'
 import { Text, Billboard } from '@react-three/drei'
 import MonumentInteraction from './MonumentInteraction'
+import { resumeData } from '../../data/resumeContent'
 
 // Architectural Element: Modern Concrete Pillar
 function Pillar({ position, height }) {
@@ -105,10 +106,10 @@ export default function CentralTower() {
                     size={[10, 8, 10]}
                     text="Start Here"
                     data={{
-                        "Profile": "Joe Caporiccio",
-                        "Title": "Solutions Engineer | Developer",
-                        "Contact": ["South Windsor, CT", "860-268-6035", "jrcaporiccio@gmail.com"],
-                        "Summary": "Technical professional with 7+ years experience in software development, customer collaboration, and technical problem-solving. Seeking to leverage development background in a customer-facing Solutions Engineering role."
+                        "Profile": resumeData.profile.name,
+                        "Title": resumeData.profile.title,
+                        "Contact": resumeData.profile.contact,
+                        "Summary": resumeData.profile.summary
                     }}
                 />
 
@@ -116,14 +117,10 @@ export default function CentralTower() {
                 <SkyscraperLevel
                     position={[0, 12, 0]}
                     size={[8, 8, 8]}
-                    text="PA Industries"
+                    text={resumeData.experience[2].company} // PA Industries
                     data={{
-                        "Role": "Applications Service Engineer (2016-2017)",
-                        "Key Responsibilities": [
-                            "Provided frontline technical support to manufacturing clients, diagnosing complex issues.",
-                            "Served as technical liaison between customers and internal engineering.",
-                            "Analyzed PLC programming issues using AB RSLogix5000."
-                        ]
+                        "Role": `${resumeData.experience[2].role} (${resumeData.experience[2].period})`,
+                        "Details": resumeData.experience[2].details
                     }}
                     isGlass={true}
                 />
@@ -134,13 +131,8 @@ export default function CentralTower() {
                     size={[8, 8, 8]}
                     text="Config Analyst"
                     data={{
-                        "Role": "Configuration Analyst @ Envision Pharma (2018-2021)",
-                        "Key Responsibilities": [
-                            "Gathered requirements and configured portal solutions to meet business needs.",
-                            "Translated customer requirements into technical specifications.",
-                            "Created comprehensive technical documentation and training materials.",
-                            "Modified Java codebase and wrote validation scripts in Groovy."
-                        ]
+                        "Role": `${resumeData.experience[1].role} @ ${resumeData.experience[1].company} (${resumeData.experience[1].period})`,
+                        "Details": resumeData.experience[1].details
                     }}
                     isGlass={true}
                 />
@@ -151,18 +143,8 @@ export default function CentralTower() {
                     size={[7, 8, 7]}
                     text="Developer II"
                     data={{
-                        "Role": "Developer II @ Envision Pharma (Jan 2022 - Present)",
-                        "Highlight": "Customer-Facing Technical Work",
-                        "Responsibilities": [
-                            "Collaborate directly with clients to scope solutions.",
-                            "Translate technical constraints for non-technical stakeholders.",
-                            "Troubleshoot production issues and customer bugs."
-                        ],
-                        "Technical Implementation": [
-                            "Develop web apps using Laravel, React, PHP, JS.",
-                            "Deploy via Azure DevOps CI/CD.",
-                            "API Integrations & PostgreSQL."
-                        ]
+                        "Role": `${resumeData.experience[0].role} @ ${resumeData.experience[0].company} (${resumeData.experience[0].period})`,
+                        "Details": resumeData.experience[0].details
                     }}
                     isGlass={true}
                 />

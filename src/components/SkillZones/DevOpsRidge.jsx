@@ -1,18 +1,9 @@
 import SkillZone from './SkillZone'
 import { Text } from '@react-three/drei'
+import { resumeData } from '../../data/resumeContent'
 
 export default function DevOpsRidge({ position }) {
-    const data = {
-        title: "DevOps & Infrastructure",
-        subtitle: "CI/CD & Cloud",
-        data: {
-            "Tools": ["Azure DevOps", "CI/CD Pipelines", "Git"],
-            "Experience": [
-                "Deploy solutions through Azure DevOps pipelines across multiple environments.",
-                "Manage environment migrations ensuring minimal disruption."
-            ]
-        }
-    }
+    const data = resumeData.skills.devops
 
     // Style: Industrial Warehouse / Distribution Center
     return (

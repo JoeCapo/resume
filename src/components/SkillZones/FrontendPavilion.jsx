@@ -1,16 +1,9 @@
 import SkillZone from './SkillZone'
 import { Html, Text } from '@react-three/drei'
+import { resumeData } from '../../data/resumeContent'
 
 export default function FrontendPavilion({ position }) {
-    const data = {
-        title: "Frontend Development",
-        subtitle: "UI/UX & Interactive Experiences",
-        data: {
-            "Stack": ["React", "JavaScript", "HTML/CSS", "Three.js"],
-            "Certifications": "Google UX Design Certificate (2021)",
-            "Experience": "Collaborated with UX/UI designers to deliver integrated solutions. Ensured accessibility standards and visual excellence."
-        }
-    }
+    const data = resumeData.skills.frontend
 
     // Style: Modern Tech Office (Glass & White Aluminum)
     return (
